@@ -5,7 +5,7 @@ Facebook's GraphQL backend implemented with Node+Mongo
 
 **write tests.**
 
-**contribute**
+**contribute.**
 
 **take over the world.**
 
