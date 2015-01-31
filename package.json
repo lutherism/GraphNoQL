@@ -1,0 +1,25 @@
+{
+  "name": "GraphNoQL",
+  "version": "1.0.0",
+  "description": "Facebook's GraphQL concept implemented in Node+Mongo",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lutherism/GraphNoQL.git"
+  },
+  "keywords": [
+    "GraphQL"
+  ],
+  "author": "lutherism",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lutherism/GraphNoQL/issues"
+  },
+  "homepage": "https://github.com/lutherism/GraphNoQL"
+}
