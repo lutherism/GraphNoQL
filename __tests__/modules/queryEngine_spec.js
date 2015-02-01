@@ -1,17 +1,9 @@
-var rewire = require('rewire');
-
 describe("The Query Engine", function() {
-  var queryEngine = rewire('../../source/js/modules/queryEngine'),
-      fixtures = require('helpers/modules/testQueries'),
+  var queryEngine = require.requireActual('../../source/js/modules/queryEngine'),
+      fixtures = require.requireActual('../testQueries'),
       testId = "nodeidtest",
       testQuery = fixtures.testQuery,
       testDb = fixtures.NodeDB;
-
-  queryEngine.__set__("db", {
-    get: function(query, callback) {
-      callback(testDb[query.id]);
-    }
-  });
 
   it("recognizes an edge", function() {
     var positive = {
@@ -32,16 +24,16 @@ describe("The Query Engine", function() {
   });
 
   it("queries the database for root NodeIDs in query", function() {
-    queryEngine.queryEngine(testQuery, function(obj) {
-      expect(obj.test).toEqual("nodeidtest.test");
+    queryEngine(testQuery, function(obj) {
+      expect(obj[testId].test).toEqual("nodeidtest.test");
     });
   });
 
   it("maps node queries onto a set of connections", function() {
-    queryEngine.queryEngine(testQuery, function(obj) {
-      console.log(obj);
-      expect(obj.friends.length).toEqual(2);
-      expect(obj.friends[1].test).toEqual("friends2.test");
+    queryEngine(testQuery, function(obj) {
+      console.log(JSON.stringify(obj).split(',').join('\n'));
+      expect(obj[testId].friends.length).toEqual(2);
+      expect(obj[testId].friends[1].test).toEqual("friend2.test");
     });
   });
 });

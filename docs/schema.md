@@ -37,14 +37,16 @@ Connections are small objects that point at a node. They can carry any amount of
 {
     NodeID: {
         attributes: true,
-        edge: [{ //query options
+        edge: {
+            get: { //query options
                 options: true
-            }, { //object model
+            },
+            node: { //object model
                 cursor: true,
                 node: {
                     attributes: true
                 }
-            }]
+            }
         }
     }
 }

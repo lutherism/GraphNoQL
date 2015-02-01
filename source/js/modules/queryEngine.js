@@ -1,14 +1,22 @@
 var queryEngine,
-  db = require('db');
+  db = require('./db');
 
 function isEdge(value) { //duck type edge objects
-  return !!(
-    value &&
-    Array.isArray(value) &&
-    value.length === 2 &&
-    typeof value[0] === 'object' &&
-    typeof value[1] === 'object'
-  );
+  if (value &&
+    typeof value === 'object') {
+    var length = 0;
+    for (var i in value) {
+      length+=1;
+    }
+    return !!(
+      length === 2 &&
+      typeof value.get === 'object' &&
+      typeof value.node === 'object'
+    );
+  } else {
+    return false;
+  }
+
 }
 
 function map(obj, fn) {
@@ -21,8 +29,8 @@ function map(obj, fn) {
 
 function filter(obj, filter) {
   var ret = {};
-  map(filter, function(a, v, k) {
-    if (v === true) a[k] = obj[k];
+  map(filter, function(v, k) {
+    if (v === true) ret[k] = obj[k];
   });
   return ret;
 }
@@ -48,34 +56,39 @@ function hasAll(obj, compare) {
 */
 function queryNode(id, node, callback) {
   var edges = {},
-    attributes = {};
+    attributes = {},
+    hasEdges = false;
   map(node, function(v, k) {
     if (isEdge(v)) {
-      edges[k] = v
+      edges[k] = v;
+      hasEdges = true;
     } else {
       attributes[k] = v;
     }
   });
 
-  db.get(id, function(model) {
+  db.get({id: id}, function(model) {
     var ret = filter(model, attributes);
+    if (hasEdges) {
+      map(edges, function(v, k) {
 
-    map(edges, function(v, k) {
+        traverseEdges(model[k], v, function(connections) {
+          ret[k] = connections;
 
-      queryEdge(model[k], v, function(connections) {
-        ret[k] = connections;
-
-        if (hasAll(ret, edges)) {
-          callback(ret);
-        }
+          if (hasAll(ret, edges)) {
+            callback(ret);
+          }
+        });
       });
+    } else {
+      callback(ret);
     }
   });
 }
 
-function queryEdge(edge, query, callback) {
-  var options = query[0],
-    node = query[1],
+function traverseEdges(edge, query, callback) {
+  var options = query.get,
+    node = query.node,
     connections = [];
 
   edge.map(function(connection, i) {
@@ -91,7 +104,7 @@ function queryEdge(edge, query, callback) {
 
 queryEngine = function queryEngine(queries, callback) {
   var results = {};
-  queries.map(function(node, id) {
+  map(queries, function(node, id) {
     queryNode(id, node, function(result) {
       results[id] = result;
       if (hasAll(queries, results)) {
@@ -99,6 +112,8 @@ queryEngine = function queryEngine(queries, callback) {
       }
     })
   });
-}
+};
 
-modules.exports = queryEngine;
+queryEngine.isEdge = isEdge;
+
+module.exports = queryEngine;
