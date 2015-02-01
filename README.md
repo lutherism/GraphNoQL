@@ -23,7 +23,7 @@ objects for queriying edges.
 
 Let's look at an example query:
 
-```sh
+```js
 {
   nodeidtest: {       // Give a Node ID for us to start from
     id: true,         // Define which fields we want to return
@@ -50,7 +50,7 @@ include edges, it will continue making queries until it has found everything
 requested.
 
 And example response might look like:
-```sh
+```js
 {
   nodeidtest: {
     id: "nodeidtest",
@@ -74,7 +74,7 @@ And example response might look like:
 Here's the Mongo documents which would generate that response form that query:
 
 ####NodeIdTest
-```sh
+```js
 {
   id: "nodeidtest",
   test: "nodeidtest.test",
@@ -96,7 +96,7 @@ Here's the Mongo documents which would generate that response form that query:
 }
 ```
 ####Friend1
-```sh
+```js
 {
   id: "friend1",
   test: "friend1.test",
@@ -118,7 +118,7 @@ Here's the Mongo documents which would generate that response form that query:
 }
 ```
 ####Friend2
-```sh
+```js
 {
   id: "friend2",
   test: "friend2.test",
