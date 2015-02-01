@@ -18,8 +18,8 @@ takes in a query object (defined in `./docs/schema.md`)", and a callback. It the
 # Example
 
 We have tweaked Facebook's GraphQL format to be JSON compatible. The biggest
-changes is that we use string id's for root calls, and special **Edge**
-objects for queriying edges.
+change is that we got rid of calls, and use string id's for root node queries,
+and special **Edge** objects for queriying edges.
 
 Let's look at an example query:
 
