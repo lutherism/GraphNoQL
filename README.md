@@ -44,7 +44,10 @@ Let's look at an example query:
 ```
 This query would start at the root node with `id === 'nodeidtest'`, getting the
 `id`, `test`, and `name` fields. Then it would traverse the `friends` edge,
-finding related nodes according the rules set by the `edge.get` hash.
+finding related nodes according the rules set by the `edge.get` hash. For each
+found node, it would return the fields defined in `edge.node` if this node
+include edges, it will continue making queries until it has found everything
+requested.
 
 And example response might look like:
 ```sh
