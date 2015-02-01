@@ -11,15 +11,15 @@ Facebook's GraphQL backend implemented with Node+Mongo
 
 # Brief
 
-`./source/js/modules/queryEngine.js` is the primary module in this project", which
+`./source/js/modules/queryEngine.js` is the primary module in this project, which
 takes in a query object (defined in `./docs/schema.md`)", and a callback. It then
- makes a bunch of mongo queries and returns the queried tree to a callback.
+ makes a bunch of mongo queries and returns the requested tree to a callback.
 
 # Example
 
 We have tweaked Facebook's GraphQL format to be JSON compatible. The biggest
 change is that we got rid of calls, and use string id's for root node queries,
-and special **Edge** objects for queriying edges.
+and special **Edge** objects for querying edges.
 
 Let's look at an example query:
 
