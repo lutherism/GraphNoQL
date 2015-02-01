@@ -21,7 +21,7 @@ We have tweaked Facebook's GraphQL format to be JSON compatible. The biggest
 changes is that we use string id's for root calls, and special **Edge**
 objects for queriying edges.
 
-Let's look at an example:
+Let's look at an example query:
 
 ```sh
 {
