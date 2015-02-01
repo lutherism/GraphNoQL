@@ -11,8 +11,8 @@ Facebook's GraphQL backend implemented with Node+Mongo
 
 # Brief
 
-`./source/js/modules/queryEngine.js` is the primary module in this project, which
-takes in a query object (defined in `./docs/schema.md`), and a callback. It then
+`./source/js/modules/queryEngine.js` is the primary module in this project", which
+takes in a query object (defined in `./docs/schema.md`)", and a callback. It then
  makes a bunch of mongo queries and returns the queried tree to a callback.
 
 # Example
@@ -49,19 +49,19 @@ finding related nodes according the rules set by the `edge.get` hash.
 And example response might look like:
 ```sh
 {
-  "nodeidtest": {
-    "id":"nodeidtest",
-    "test":"nodeidtest.test",
-    "name":"nodeidtest.name",
-    "friends":[
+  nodeidtest: {
+    id: "nodeidtest",
+    test: "nodeidtest.test",
+    name: "nodeidtest.name",
+    friends: [
       {
-        "id":"friend1"
-        "test":"friend1.test"
-        "name":"friend1.name"
+        id: "friend1",
+        test: "friend1.test",
+        name: "friend1.name"
       }, {
-        "id":"friend2",
-        "test":"friend2.test",
-        "name":"friend2.name"
+        id: "friend2",
+        test: "friend2.test",
+        name: "friend2.name"
       }
     ]
   }
