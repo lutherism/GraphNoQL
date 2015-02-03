@@ -23,17 +23,18 @@ describe("The Query Engine", function() {
     expect(queryEngine.isEdge(negative)).toEqual(false);
   });
 
-  it("queries the database for root NodeIDs in query", function() {
+  it("queries the database for the root NodeIDs in query", function() {
     queryEngine(testQuery, function(obj) {
       expect(obj[testId].test).toEqual("nodeidtest.test");
     });
   });
 
   it("maps node queries onto a set of connections", function() {
+    console.log(testQuery);
     queryEngine(testQuery, function(obj) {
       console.log(JSON.stringify(obj).split(',').join('\n'));
-      expect(obj[testId].friends.length).toEqual(2);
-      expect(obj[testId].friends[1].test).toEqual("friend2.test");
+      expect(obj[testId].friends.length).toEqual(1);
+      expect(obj[testId].friends[0].test).toEqual("friend1.test");
     });
   });
 });

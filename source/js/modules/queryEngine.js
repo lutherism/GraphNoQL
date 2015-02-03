@@ -89,7 +89,11 @@ function queryNode(id, node, callback) {
 function traverseEdges(edge, query, callback) {
   var options = query.get,
     node = query.node,
-    connections = [];
+    connections = [],
+    after = options.after || 0,
+    first = options.first || edge.length;
+
+  edge = edge.slice(after, first);
 
   edge.map(function(connection, i) {
     queryNode(connection.node.id, node, function(model) {

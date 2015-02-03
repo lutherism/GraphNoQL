@@ -107,12 +107,6 @@ Here's the Mongo documents which would generate that response form that query:
       node: {
         id: "nodeidtest"
       }
-    },
-    {
-      cursor: 2,
-      node: {
-        id: "friend2"
-      }
     }
   ]
 }
@@ -128,12 +122,6 @@ Here's the Mongo documents which would generate that response form that query:
       cursor: 1,
       node: {
         id: "nodeidtest"
-      }
-    },
-    {
-      cursor: 2,
-      node: {
-        id: "friend1"
       }
     }
   ]

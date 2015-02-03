@@ -6,7 +6,7 @@ var fixtures = {
       name: true,
       friends: {
         get: {
-          all: true,
+          first: 1,
         },
         node: {
           id: true,
