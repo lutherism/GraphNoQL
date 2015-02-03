@@ -11,19 +11,19 @@ Facebook's GraphQL backend implemented with Node+Mongo
 
 # Brief
 
-`./source/js/modules/queryEngine.js` is the primary module in this project", which
+`./source/js/modules/queryEngine.js` is the primary module in this project, which
 takes in a query object (defined in `./docs/schema.md`)", and a callback. It then
- makes a bunch of mongo queries and returns the queried tree to a callback.
+ makes a bunch of mongo queries and returns the requested tree to a callback.
 
 # Example
 
 We have tweaked Facebook's GraphQL format to be JSON compatible. The biggest
-changes is that we use string id's for root calls, and special **Edge**
-objects for queriying edges.
+change is that we got rid of calls, and use string id's for root node queries,
+and special **Edge** objects for querying edges.
 
 Let's look at an example query:
 
-```sh
+```js
 {
   nodeidtest: {       // Give a Node ID for us to start from
     id: true,         // Define which fields we want to return
@@ -50,7 +50,7 @@ include edges, it will continue making queries until it has found everything
 requested.
 
 And example response might look like:
-```sh
+```js
 {
   nodeidtest: {
     id: "nodeidtest",
@@ -74,7 +74,7 @@ And example response might look like:
 Here's the Mongo documents which would generate that response form that query:
 
 ####NodeIdTest
-```sh
+```js
 {
   id: "nodeidtest",
   test: "nodeidtest.test",
@@ -96,7 +96,7 @@ Here's the Mongo documents which would generate that response form that query:
 }
 ```
 ####Friend1
-```sh
+```js
 {
   id: "friend1",
   test: "friend1.test",
@@ -112,7 +112,7 @@ Here's the Mongo documents which would generate that response form that query:
 }
 ```
 ####Friend2
-```sh
+```js
 {
   id: "friend2",
   test: "friend2.test",
