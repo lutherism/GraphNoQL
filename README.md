@@ -1,14 +1,6 @@
 # GraphNoQL
 Facebook's GraphQL backend implemented with Node+Mongo
 
-**read the docs.**
-
-**write tests.**
-
-**contribute.**
-
-**take over the world.**
-
 # Brief
 
 `./source/js/modules/queryEngine.js` is the primary module in this project, which
